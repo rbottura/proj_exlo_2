@@ -1,0 +1,37 @@
+SCENE 2_1 :>
+
+il y a une matrice de 17x15 cube à bordure blanche avec une pièce à l'intérieur
+
+1>tube 3
+
+2>tip 4
+
+3>tip 3
+
+4>top 1 (clip)
+
+5>end 2
+
+6>tip 5
+
+7>top 4
+
+8>top 3
+
+9>end 1a
+
+10>Rode graphite
+
+11>tip 2
+
+12>tip 1
+
+13>top 2
+
+14>tube 2
+
+15>tube 1
+
+16>tip 6
+
+17>end 1b
