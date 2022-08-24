@@ -48,6 +48,3 @@ btn_play.addEventListener("click", function () {
 btn_stop.addEventListener("click",function(){
     AudCtx.suspend();
 })
-
-
-

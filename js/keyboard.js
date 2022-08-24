@@ -2,13 +2,13 @@ let nav_show = true, openGate = true, showGates = false;
 
 document.addEventListener("keydown", function (e) {
   if (e.key == "w") {
-    rotate_x -= 1;
+    rotate_x -= 0.1;
   } else if (e.key == "x") {
-    rotate_x += 1;
+    rotate_x += 0.1;
   } else if (e.key == "c") {
-    rotate_y += 1;
+    rotate_y += 0.1;
   } else if (e.key == "v") {
-    rotate_y -= 1;
+    rotate_y -= 0.1;
   } else if (e.key == "b") {
     zoom_param += 0.01;
   } else if (e.key == "n") {
@@ -25,6 +25,18 @@ document.addEventListener("keydown", function (e) {
     translate_z += 600;
   } else if (e.key == "!") {
     translate_z -= 600;
+  } else if (e.key == "1") {
+    ship_0.deck[current_ship_item].sX += 0.3;
+  } else if (e.key == "2") {
+    ship_0.deck[current_ship_item].sY -= 0.3;
+  } else if (e.key == "3") {
+    ship_0.deck[current_ship_item].sX -= 0.3;
+  } else if (e.key == "4") {
+    ship_0.deck[current_ship_item].sZ += 0.3;
+  } else if (e.key == "5") {
+    ship_0.deck[current_ship_item].sY += 0.3;
+  } else if (e.key == "6") {
+    ship_0.deck[current_ship_item].sZ -= 0.3;
   }
   console.log(e.key);
 })
@@ -83,21 +95,12 @@ function activateMod(e) {
       checkScene(scenePlaying);
       break;
     case 'ArrowUp':
-      if (SCENES[2]) {
-        sendCruiserSignal();
-        setTimeout(() => {
-          scenePlaying++;
-          checkScene(scenePlaying);
-        }, 200);
-      } else {
-
-        scenePlaying++;
-        checkScene(scenePlaying);
-      }
+      current_ship_item++;
+      customizeShip(current_ship_item);
       break;
-    case 'ArrowDown':
-      scenePlaying--;
-      checkScene(scenePlaying);
+      case 'ArrowDown':
+        current_ship_item--;
+        customizeShip(current_ship_item);
       break;
   }
 }

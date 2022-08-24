@@ -10,81 +10,42 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 
   <script src="./libraries/p5.min.js"></script>
-  <script src="./libraries/p5.sound.min.js"></script>
-  <script src="./node_modules/webmidi/dist/iife/webmidi.iife.min.js"></script>
+  <!-- <script src="./libraries/p5.sound.min.js"></script> -->
+  <!-- <script src="./node_modules/webmidi/dist/iife/webmidi.iife.min.js"></script> -->
 </head>
 
 <body>
   <div id="main">
-    <div id="noteContainer">
-    </div>
 
     <canvas id="canvas"></canvas>
     <div id="nav">
-      <div id="input_rotate">
-        <div class="input_items">
-          <label for="rotateY">Rotate Y :</label>
-          <input type="range" id="rotateY" name="rotateY" min="0" max="8" step="0.01">
-        </div>
 
-        <div class="input_items">
-          <label for="rotateX">Rotate X :</label>
-          <input type="range" id="rotateX" name="rotateX" min="0" max="8" step="0.01">
-        </div>
-        <div class="input_items">
-          <label for="trZ">Translate on Z :</label>
-          <input type="range" id="trZ" name="trZ" min="-1000" max="1000" step="15">
-        </div>
-        <div class="input_items">
-          <label for="zoom_param">Zoom :</label>
-          <input type="range" id="zoom_param" name="zoom_param" min="0.01" max="3" step="0.01">
-        </div>
-        <div class="input_items">
-          <label for="strokeWeight_all">Stroke Weight :</label>
-          <input type="range" id="strokeWeight_all" name="strokeWeight_all" min="0" max="3" step="0.05">
-        </div>
-        <div class="input_items">
-          <label for="moove_gate_in">Position of entry gate :</label>
-          <input type="range" id="moove_gate_in" name="moove_gate_in" min="-400" max="-100" step="5">
-        </div>
-        <div class="input_items">
-          <label for="moove_gate_out">Position of exit gate :</label>
-          <input type="range" id="moove_gate_out" name="moove_gate_out" min="100" max="400" step="5">
-        </div>
-        <div class="input_items">
-          <label for="spawn_speed_input">Spawn speed</label>
-          <input type="range" id="spawn_speed_input" name="spawn_speed_input" min="20" max="1000" step="25">
-        </div>
-        <div class="input_items">
-          <label for="population_param">Population</label>
-          <input type="range" id="population_param" name="population_param" min="25" max="75" step="1">
-        </div>
-        <div class="input_items">
-          <label for="col_wire">color of wireframe</label>
-          <input class="col_input" type="color" id="colorWireframe" name="col_wire" value="#e66465">
-        </div>
-        <div class="input_items">
-          <label for="col_spot">Color of Spotlight : </label>
-          <input class="col_input" type="color" id="colorSpot" name="col_body" value="#3bf7f4">
-        </div>
-        <div class="input_items">
-          <label for="fill_box">Fill / noFill</label>
-          <input type="checkbox" id="fill_box" name="fill_box" checked>
-        </div>
-        <div class="input_items">
-          <div class="music_btn" id="play_music">PLAY</div>
-          <div class="music_btn" id="stop_music">STOP</div>
-        </div>
+      <div class="ships_items" id="ship_elem_1"></div>
+      <div class="ships_items" id="ship_elem_2"></div>
+      <div class="ships_items" id="ship_elem_3"></div>
+      <div class="ships_items" id="ship_elem_4"></div>
+      <div class="ships_items" id="ship_elem_5"></div>
+      <div class="ships_items" id="ship_elem_6"></div>
+
+      <div class="input_items">
+        <label for="col_wire">color of wireframe</label>
+        <input class="col_input" type="color" id="colorWireframe" name="col_wire" value="#e66465">
       </div>
+
+      <div class="input_items">
+        <label for="col_spot">Color of Spotlight : </label>
+        <input class="col_input" type="color" id="colorSpot" name="col_body" value="#3bf7f4">
+      </div>
+      
     </div>
   </div>
-  <script src="js/spaceship.js"></script>
   <script src="js/classes.js"></script>
-  <script src="js/record.js"></script>
-  <script src="js/ui.js"></script>
-  <script src="js/audio.js"></script>
-  <script src="js/keyboard.js"></script>
+  <script src="js/spaceship.js"></script>
   <script src="js/scenes.js"></script>
+  <!-- <script src="js/record.js"></script> -->
+  <!-- <script src="js/audio.js"></script> -->
+  <script src="js/ui.js"></script>
+  <script src="js/keyboard.js"></script>
   <script src="js/sketch.js"></script>
 </body>
 
