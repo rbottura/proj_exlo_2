@@ -57,6 +57,8 @@ class Ship {
 
         this.partCruiser = isCruiser;
 
+        this.xwingStatus = false;
+
         let newDeckPart1 = new Parts(pencil_parts[3 - 1].obj, 1, 0, 0, 0, 1, 1, speed3, true);
         let newDeckPart2 = new Parts(pencil_parts[5 - 1].obj, 1, 0, 0, 0, 1, 1, speed3, true);
         let newDeckPart3 = new Parts(pencil_parts[6 - 1].obj, 1, 0, 0, 0, 1, 1, speed3, true);
@@ -66,25 +68,75 @@ class Ship {
         this.deck.push(newDeckPart1);
         this.deck.push(newDeckPart2);
         this.deck.push(newDeckPart3);
-        this.deck.push(newDeckPart4);
         this.deck.push(newDeckPart5);
+        this.deck.push(newDeckPart4);
         this.deck.push(newDeckPart6);
 
+        this.easeSpeed = 0.006;
+        
         for (let i = 0; i < this.deck.length; i++) {
-            if (i == 3) {
+            if (i == 4) {
                 this.deck[i].wingShape();
             } else {
                 this.deck[i].newScale();
             }
         }
+        
+        this.xwingPart = new Parts(pencil_parts[7 - 1].obj, 1, 0, 0, 0, 1, 1, speed3, true);
+        this.xwingPart.sX = this.deck[4].sX;
+        this.xwingPart.sY = this.deck[4].sY;
+        this.xwingPart.sZ = this.deck[4].sZ;
     }
     wait() {
         this.speed = 0;
     }
+
     go() {
         this.speed = 15;
     }
+
+    newPosition(){
+        this.x = random(-5,5)*20;
+        this.y = random(-5,5)*20;
+    }
+    
+    easeTranslate(easeSpeed) {
+        this.xEase = easeIn(this.xEase, this.x, easeSpeed);
+        this.yEase = easeIn(this.yEase, this.y, easeSpeed);
+        this.zEase = easeIn(this.zEase, this.z, easeSpeed);
+    }
+    //This function show the selected element as the first rendered object, to avoid opacity issues !!
+    showBuild(elem) {
+
+        this.easeTranslate(this.easeSpeed);
+
+        push();
+        noStroke();
+        scale(0.2 + this.scale);
+        translate(this.xEase, this.yEase, this.zEase);
+
+        this.deck[elem].show();
+        for (let i = 0; i < this.deck.length; i++) {
+            if (elem != i) {
+                this.deck[i].show();
+            }
+        }
+        pop();
+    }
+
     show() {
+        
+        this.easeTranslate(this.easeSpeed);
+
+        if (this.deck.length == 7 && !this.xwingStatus) {
+            this.deck.splice(6, 1);
+        } else if (this.deck.length == 6 && this.xwingStatus) {
+            this.deck.push(this.xwingPart);
+            this.xwingPart.sX = this.deck[4].sX;
+            this.xwingPart.sY = this.deck[4].sY;
+            this.xwingPart.sZ = this.deck[4].sZ;
+        } 
+
         this.speedEase = easeIn(this.speedEase, this.speed, speed3);
 
         if (!this.partCruiser) {
@@ -101,11 +153,29 @@ class Ship {
         noStroke();
         scale(0.2 + this.scale);
         translate(this.xEase, this.yEase, this.zEase);
+
         for (let i = 0; i < this.deck.length; i++) {
-            this.deck[i].show();
+            if (this.xwingStatus && (i == 4 || i == 6)) {
+                push();
+                rotateZ((i-5)*PI / 10);
+                this.deck[i].show();
+                pop();
+            } else {
+                this.deck[i].show();
+            }
         }
         pop();
     }
+}
+
+
+setTimeout(() => {
+    shipsFloating();
+}, 6000);
+
+function shipsFloating(){
+    ship_0.newPosition();
+    setTimeout(shipsFloating, 1000);
 }
 
 class Cruiser {

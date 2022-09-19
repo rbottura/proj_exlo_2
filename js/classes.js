@@ -1,4 +1,4 @@
-let  dr2 = 0;
+let dr2 = 0;
 
 class Parts {
     constructor(objModel, index, x, y, z, scale, speed, easeInSpeed, fill_status) {
@@ -42,6 +42,10 @@ class Parts {
         this.opaEase = this.opacity;
 
         this.inScene = 0;
+
+        this.colorR = 255;
+        this.colorG = 255;
+        this.colorB = 255;
     }
 
     updateScene(e) {
@@ -86,8 +90,8 @@ class Parts {
 
     wingShape() {
         this.sX = 2 + random() * 3;
-        this.sY = 0.5 + random();
-        this.sZ = random() * 0.8;
+        this.sY = 0.3 + random();
+        this.sZ = random(-2,-1) * 0.6;
     }
 
     cruiserDimension() {
@@ -189,7 +193,7 @@ class Parts {
         this.easeRotation(this.easeInSpeed);
 
         if (this.fill_status) {
-            fill(255, this.opacity);
+            fill(this.colorR, this.colorG, this.colorB, this.opacity);
             noStroke();
         } else {
             noFill();
@@ -199,7 +203,8 @@ class Parts {
         push();
         scale(this.sXEase, this.sYEase, this.sZEase);
         translate(this.xEase, this.yEase, this.zEase);
-        ambientMaterial(255);
+        //ambientMaterial(255);
+
         model(this.obj);
         pop();
     }
@@ -240,6 +245,48 @@ function build_full_pencil() {
     fullPencil.push(end);
     fullPencil.push(rode);
 }
+
+let boxesFlying = [];
+
+class Boxes {
+    constructor(x, y, z, scale, speed) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.scale = scale;
+        this.speed = speed;
+    }
+    show() {
+        if (this.z <= 375 && this.z >= -375) {
+            this.z -= this.speed;
+
+            push();
+            translate(this.x, this.y, this.z);
+            scale(this.scale);
+            // stroke(50, 100, 255);
+            // strokeWeight(1);
+            noStroke();
+            fill(200);
+            box(3, 3, 3);
+            pop();
+        }
+    }
+}
+
+function rainBoxes() {
+    boxesFlying.splice(0, 1);
+    let newBox = new Boxes(random(-1, 1) * 20 + Math.trunc(random(-1, 1)*310), random(-1, 1) *20 + Math.trunc(random(-1, 1)*160), 375, random(2) + 1, 4 + random(10));
+    boxesFlying.push(newBox);
+    setTimeout(rainBoxes, 80);
+}
+
+setTimeout(() => {
+    for (let i = 0; i < 50; i++) {
+        let newBox = new Boxes(random(-1, 1) * 20 + Math.trunc(random(-1, 1)*310), random(-1, 1) *20 + Math.trunc(random(-1, 1)*160), 375, random(2) + 1, 4 + random(10));
+        boxesFlying.push(newBox);
+    }
+    rainBoxes();
+}, 500);
 
 class mouseParts {
     constructor(objModel, index, x, y, z_pos, scale, speed) {

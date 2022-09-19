@@ -63,13 +63,28 @@ function Scene_0(loaded) {
         box(650, 350, 750, 2, 2);
         pop();
 
-        ship_0.show();
+        // for (let i = 0; i < 6; i++) {
+
+        // }
+        if (activeItemWrapper == 0) {
+            ship_0.showBuild(current_ship_item);
+        } else if (activeItemWrapper == 1) {
+            ship_0.show();
+        } else if (activeItemWrapper == 2) {
+            ship_0.show();
+        }
 
         if (meshBuildingLoaded) {
             //loadMidMeshBuilding();
         }
     } else {
         //console.log("not loaded")
+    }
+}
+
+function scene_rainingBoxes() {
+    for (i = 0; i < boxesFlying.length; i++) {
+        boxesFlying[i].show();
     }
 }
 

@@ -20,31 +20,47 @@
     <canvas id="canvas"></canvas>
     <div id="nav">
 
-      <div class="ships_items" id="ship_elem_1"></div>
-      <div class="ships_items" id="ship_elem_2"></div>
-      <div class="ships_items" id="ship_elem_3"></div>
-      <div class="ships_items" id="ship_elem_4"></div>
-      <div class="ships_items" id="ship_elem_5"></div>
-      <div class="ships_items" id="ship_elem_6"></div>
-
-      <div class="input_items">
-        <label for="col_wire">color of wireframe</label>
-        <input class="col_input" type="color" id="colorWireframe" name="col_wire" value="#e66465">
+      <div class="ships_items_wrapper" id="">
+        <div class="ships_items_container"  id="ships_items_original">
+          <div class="ships_items" id="ship_elem_1">1</div>
+          <div class="ships_items" id="ship_elem_2">2</div>
+          <div class="ships_items" id="ship_elem_3">3</div>
+          <div class="ships_items" id="ship_elem_4">4</div>
+          <div class="ships_items" id="ship_elem_5">5</div>
+          <div class="ships_items" id="ship_elem_6">6</div>
+          <div class="ships_items" id="ship_elem_lock">LOCK</div>
+        </div>
+        <p class="text_ui">msg output : <span id="build_msg_prompt_span"></span></p>
       </div>
-
-      <div class="input_items">
-        <label for="col_spot">Color of Spotlight : </label>
-        <input class="col_input" type="color" id="colorSpot" name="col_body" value="#3bf7f4">
+      <div class="ships_items_wrapper">
+        <div class="ships_items_container">
+          <div class="ships_items" id="xwing_btn">X-Wing</div>
+        </div>
+        <p class="text_ui" id="xwing_status">Disabled</p>
       </div>
       
+      <div class="ships_items_wrapper">
+        <div class="ships_items_container">
+          <div class="ships_items" id="refresh_btn">Re-Scale</div>
+        </div>
+        <p class="text_ui" id="current_hash_name"></p>
+      </div>
+<!--       
+      <br>
+      
+      <div class="ships_items_container">
+        <div class="ships_items" id="ship_item_addon_plus">+</div>
+      </div> -->
+
     </div>
   </div>
+  <script src="js/ui.js"></script>
+  <script src="js/gamepad.js"></script>
   <script src="js/classes.js"></script>
   <script src="js/spaceship.js"></script>
   <script src="js/scenes.js"></script>
   <!-- <script src="js/record.js"></script> -->
   <!-- <script src="js/audio.js"></script> -->
-  <script src="js/ui.js"></script>
   <script src="js/keyboard.js"></script>
   <script src="js/sketch.js"></script>
 </body>

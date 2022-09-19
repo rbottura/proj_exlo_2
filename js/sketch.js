@@ -17,7 +17,6 @@ let reScaleObject = false;
 
 let copyFullPencil = [];
 
-let partsLoaded = false;
 
 function preload() {
   myFont = loadFont('assets/Roboto-Regular.ttf');
@@ -59,13 +58,13 @@ function setup() {
   createCanvas(WiW, WiH, WEBGL);
 
   cam = camera(0, 0, (height / 2) / tan(PI / 6), 0, 0, 0, 0, 1, 0);
-  perspective(PI / 2.5, width / height, 0.1, 20000);
+  perspective(PI / 1.9, width / height, 0.1, 20000);
 
   zoomIn = 2;
   ortho(-WiW / zoomIn, WiW / zoomIn, -WiH / zoomIn, WiH / zoomIn, -5000, 5000);
 
   textFont(myFont);
-  textSize(10);
+  textSize(10); 
 }
 
 let light_col = 255;
@@ -73,8 +72,9 @@ let light_col = 255;
 function draw() {
   background('rgba(0,0,0)');
 
-  wire_col = color(col_wire.value);
-  light_col = color(col_spot.value);
+  if(gamepadReady){
+    drawGamepad();
+  }
 
   sceneMovementSpeed(speed4, speed4);
 
@@ -89,6 +89,7 @@ function draw() {
   switch (scenePlaying) {
     case 0:
       Scene_0(partsLoaded);
+      scene_rainingBoxes();
       break;
     case 1:
       break;

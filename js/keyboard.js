@@ -64,19 +64,12 @@ function activateMod(e) {
       checkScene(scenePlaying);
       break;
     case 'm':
-      for (let i = 0; i < pencilRow3.length; i++) {
-        pencilRow3[i].regroup();
-      };
       break;
     case 'p':
-      for (let i = 0; i < pencilRow3.length; i++) {
-        pencilRow3[i].newPosExplo(6, 6, 6);
-      };
+      checkActiveItemWrapper(1);
       break;
     case 'o':
-      for (let i = 0; i < pencilRow3.length; i++) {
-        pencilRow3[i].newScale();
-      };
+      checkActiveItemWrapper(-1);
       break;
     case 'z':
       break;
@@ -91,16 +84,26 @@ function activateMod(e) {
       }
       break;
     case 'i':
-      scenePlaying = 0;
-      checkScene(scenePlaying);
+      toggleED(activeItemWrapper);
+      break;
+    case 'k':
+      customizeShip(6);
       break;
     case 'ArrowUp':
-      current_ship_item++;
-      customizeShip(current_ship_item);
+      checkCurrentShipItem(1);
       break;
-      case 'ArrowDown':
-        current_ship_item--;
-        customizeShip(current_ship_item);
+    case 'ArrowDown':
+      checkCurrentShipItem(-1);
       break;
   }
 }
+
+function test1(val) {
+  console.log(val);
+  let newVal = 1 + val;
+  console.log("new Value is : " + newVal);
+}
+
+test1(-1);
+test1(-2);
+test1(-3);
